@@ -1,0 +1,4 @@
+# Gitpod configuration
+version: 1.0.0
+tasks:
+  - init: echo "Setting up the workspace"

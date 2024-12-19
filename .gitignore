@@ -1,0 +1,8 @@
+# Ignore log and cache files
+log/
+cache/
+.idea/
+.env/
+OUTOUT
+/assets
+assets

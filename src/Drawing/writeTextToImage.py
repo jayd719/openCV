@@ -1,3 +1,12 @@
+"""
+The write_text function uses OpenCV to modify an image by adding graphical elements and text. 
+It resizes the input image to 512x512 pixels and overlays green diagonal lines, red concentric 
+rectangles, and blue concentric circles centered on the image. Text is added at a fixed position 
+near the center using the cv.FONT_HERSHEY_SIMPLEX font. Parameters like line thickness and step 
+size are fixed, and the function prints the image dimensions for debugging. While the position 
+parameter is included, it isn’t used, and text placement is hardcoded. The function is useful 
+for creating annotated images or debugging visual effects
+"""
 import cv2 as cv
 import math
 

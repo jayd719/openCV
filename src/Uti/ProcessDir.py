@@ -1,9 +1,11 @@
+
+
 import os
 from src.Uti.ProcessResultsHTML import process_results
-from src.ImageProcessors.functions import *
 from src.ImageProcessors.ProcessImage import process_image
-from src.Drawing.writeTextToImage import write_text
-from setup import PATH,CACHE
+from ImageProcessors.writeTextToImage import write_text
+from src.ImageProcessors.functions import *
+from setup import PATH, CACHE
 
 # Apply multiple transformations
 transformations = {
@@ -14,8 +16,10 @@ transformations = {
     "Marked": lambda img: write_text(img),
     "Prep": lambda img: preprocess (img)
 }
+
+
 # Main script
-def process_directory(src="./assets/input_images/",transformations=transformations,limit=None):
+def process_directory(src="./assets/input_images/", transformations=transformations, limit=None):
     """Process images in a folder and apply transformations."""
     if not os.path.exists(src):
         print(f"Source directory '{src}' does not exist.")
@@ -28,15 +32,14 @@ def process_directory(src="./assets/input_images/",transformations=transformatio
         if image.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif')):
             try:
                 for function_name, process_fn in transformations.items():
-                    process_image(
-                        src, image, function_name=function_name, process_fn=process_fn, save_as_jpep=True
-                    )
+                    process_image(src, image, function_name=function_name, process_fn=process_fn, save_as_jpep=True)
                 
                 print(f"Processed: {image}")
             except Exception as e:
                 print(f"Error processing {image}: {e}")
         else:
             print(f"Skipped non-image file: {image}")
+
 
 if __name__ == "__main__":
     try:

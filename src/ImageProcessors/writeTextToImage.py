@@ -1,14 +1,16 @@
+"""-------------------------------------------------------
+Computer Vision: Draw On Images
+-------------------------------------------------------
+Author:  JD
+ID:      91786
+Project: OpenCV
+Version:  1.0.8
+__updated__ = Thu Dec 19 2024
+-------------------------------------------------------
 """
-The write_text function uses OpenCV to modify an image by adding graphical elements and text. 
-It resizes the input image to 512x512 pixels and overlays green diagonal lines, red concentric 
-rectangles, and blue concentric circles centered on the image. Text is added at a fixed position 
-near the center using the cv.FONT_HERSHEY_SIMPLEX font. Parameters like line thickness and step 
-size are fixed, and the function prints the image dimensions for debugging. While the position 
-parameter is included, it isn’t used, and text placement is hardcoded. The function is useful 
-for creating annotated images or debugging visual effects
-"""
+
 import cv2 as cv
-import math
+
 
 def write_text(img, position=(None, None), text="Sample Text"):
 
@@ -31,7 +33,6 @@ def write_text(img, position=(None, None), text="Sample Text"):
     left, right = margin, w - margin
     top, bottom = margin, h - margin
 
-
     while left < right and top < bottom:
         cv.rectangle(img, (left, top), (right, bottom), color_red, thickness)
         left += step
@@ -45,7 +46,6 @@ def write_text(img, position=(None, None), text="Sample Text"):
     while radius < center_x and radius < center_y:
         cv.circle(img, (center_x, center_y), radius, color_blue, thickness)
         radius += step
-
 
     font = cv.FONT_HERSHEY_SIMPLEX
     text_position = (center_x - 200, center_y) 

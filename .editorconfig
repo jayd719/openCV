@@ -1,0 +1,39 @@
+{
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "git.openRepositoryInParentFolders": "never",
+  "python.defaultInterpreterPath": "/Users/jashan/projects/PhoneNumberVerification/.env",
+  "liveServer.settings.fullReload": true,
+  "editor.formatOnPaste": true,
+  "workbench.colorCustomizations": {},
+  "editor.formatOnSave": true,
+  "task.slowProviderWarning": true,
+  "python.pydev.pythonExecutable": "/Users/jashan/projects/openCV/.env/bin/python3",
+  "[python]": {
+    "editor.defaultFormatter": "fabioz.vscode-pydev"
+  },
+  "python.pydev.docstring.style": "epydoc",
+  "python.pydev.forcedBuiltins": [],
+  "fileHeaderComment.parameter": {
+    "*": {
+      "author": "JD",
+      "id": "91786",
+      "workspaceFolderBasename": "OpenCV",
+      "projectName": "Computer Vision",
+      "version": "1.0.8"
+    }
+  },
+  "fileHeaderComment.template": {
+    "*": [
+      "\"\"\"-------------------------------------------------------",
+      "${projectName}: Module Description Here",
+      "-------------------------------------------------------",
+      "Author:  ${author}",
+      "ID:      ${id}",
+      "Project: ${workspaceFolderBasename}",
+      "Version:  ${version}",
+      "__updated__ = ${date}",
+      "-------------------------------------------------------\n\"\"\"",
+    ]
+  }
+}

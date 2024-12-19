@@ -1,6 +1,6 @@
 import os
 from src.Uti.ProcessResultsHTML import process_results
-from src.ImageProcessors.functions import invert_image, convert_to_jpg, brighten_image  
+from src.ImageProcessors.functions import *
 from src.ImageProcessors.ProcessImage import process_image
 from src.Drawing.writeTextToImage import write_text
 from setup import PATH,CACHE
@@ -20,11 +20,12 @@ def test_directory(src="./assets/input_images/"):
                 
                 # Apply multiple transformations
                 transformations = {
-                    # "invert": invert_image,
+                    "invert": invert_image,
                     "original": convert_to_jpg,
-                    # "Brighten 10": lambda img: brighten_image(img, 10),
-                    # "Darken  100": lambda img: brighten_image(img, -100),
-                    "Brighten 30": lambda img: write_text(img),
+                    "Brighten 10": lambda img: brighten_image(img, 10),
+                    "Darken  100": lambda img: brighten_image(img, -100),
+                    "Marked": lambda img: write_text(img),
+                    "Prep": lambda img: preprocess (img)
                 }
 
                 for function_name, process_fn in transformations.items():

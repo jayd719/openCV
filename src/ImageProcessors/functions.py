@@ -9,3 +9,7 @@ def convert_to_jpg(img):
 
 def brighten_image(img,value):
     return cv.convertScaleAbs(img, alpha=1, beta=value)
+
+def preprocess(img,h=512):
+    cv.resize(img,(h,h),interpolation=cv.INTER_CUBIC)
+    return img

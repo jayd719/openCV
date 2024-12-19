@@ -4,8 +4,18 @@ from src.ImageProcessors.functions import *
 from src.ImageProcessors.ProcessImage import process_image
 from src.Drawing.writeTextToImage import write_text
 from setup import PATH,CACHE
+
+# Apply multiple transformations
+transformations = {
+    "invert": invert_image,
+    "original": convert_to_jpg,
+    "Brighten 10": lambda img: brighten_image(img, 10),
+    "Darken  100": lambda img: brighten_image(img, -100),
+    "Marked": lambda img: write_text(img),
+    "Prep": lambda img: preprocess (img)
+}
 # Main script
-def test_directory(src="./assets/input_images/"):
+def process_directory(src="./assets/input_images/",transformations=transformations,limit=None):
     """Process images in a folder and apply transformations."""
     if not os.path.exists(src):
         print(f"Source directory '{src}' does not exist.")
@@ -17,17 +27,6 @@ def test_directory(src="./assets/input_images/"):
         # Filter out non-image files
         if image.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif')):
             try:
-                
-                # Apply multiple transformations
-                transformations = {
-                    "invert": invert_image,
-                    "original": convert_to_jpg,
-                    "Brighten 10": lambda img: brighten_image(img, 10),
-                    "Darken  100": lambda img: brighten_image(img, -100),
-                    "Marked": lambda img: write_text(img),
-                    "Prep": lambda img: preprocess (img)
-                }
-
                 for function_name, process_fn in transformations.items():
                     process_image(
                         src, image, function_name=function_name, process_fn=process_fn, save_as_jpep=True
@@ -42,7 +41,7 @@ def test_directory(src="./assets/input_images/"):
 if __name__ == "__main__":
     try:
         # Process input folder
-        test_directory(PATH)
+        process_directory(PATH)
         # Generate HTML results
         process_results(CACHE, output_dir="cache", output_file="results.html")
     except Exception as e:

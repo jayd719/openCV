@@ -24,8 +24,8 @@ def process_folder(src="./assets/input_images/"):
                     "invert": invert_image,
                     "original": convert_to_jpg,
                     "Brighten 10": lambda img: brighten_image(img, 10),
-                    "Brighten 20": lambda img: brighten_image(img, 50),
-                    "Brighten 30": lambda img: brighten_image(img, 100),
+                    "Darken   50": lambda img: brighten_image(img, -100),
+                    "Brighten 30": lambda img: brighten_image(img, 120),
                 }
 
                 for function_name, process_fn in transformations.items():

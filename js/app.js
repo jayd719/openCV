@@ -5,6 +5,10 @@ function createDynamicStyles() {
   #creation-time{
   margin-top: 100px;
   }
+    #videosection{
+        display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    }
     h2 {
         font-size: 24px;
         margin-bottom: 20px;

@@ -1,0 +1,21 @@
+@startuml main
+!define RECTANGLE rectangle
+
+RECTANGLE "Main Script (main)" as main
+RECTANGLE "os Module" as os_module
+RECTANGLE "ProcessImage Component" as process_image
+RECTANGLE "ProcessResultsHTML Component" as process_results_html
+RECTANGLE "functions Module" as functions
+RECTANGLE "Input Images" as input_images
+RECTANGLE "Processed Output" as processed_output
+
+main --> os_module : "Directory validation"
+main --> process_image : "Image processing calls"
+main --> functions : "Uses processing functions"
+process_image --> functions : "Uses invert_image, convert_to_jpg"
+main --> process_results_html : "Calls process_results()"
+input_images --> main : "Source directory"
+process_image --> processed_output : "Saves processed images"
+process_results_html --> processed_output : "Generates HTML summary"
+
+@enduml

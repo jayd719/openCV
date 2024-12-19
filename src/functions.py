@@ -5,5 +5,5 @@ def invert_image(img):
 def convert_to_jpg(img):
     return img
 
-def brithen(img):
+def brighten_image(img):
     return img+20

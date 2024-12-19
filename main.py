@@ -1,30 +1,48 @@
 import os
 from src.ProcessResultsHTML import process_results
-from src.functions import*
-from src.ImageProcessor.ProcessImage import process_image,CACHE
-from setup import *
-
-
+from src.functions import invert_image, convert_to_jpg, brighten_image  
+from src.ImageProcessor.ProcessImage import process_image
+from setup import PATH,CACHE
 
 # Main script
-def process_folder(src = "./assets/input_images/"):
+def process_folder(src="./assets/input_images/"):
+    """Process images in a folder and apply transformations."""
     if not os.path.exists(src):
         print(f"Source directory '{src}' does not exist.")
-    else:
-        for image in os.listdir(src):
-            # Filter out non-image files
-            if image.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff',".tif")):
-                process_image(src, image, function_name="invert", process_fn=invert_image,save_as_jpep=True)
-                process_image(src, image, function_name="Original", process_fn=convert_to_jpg,save_as_jpep=True)
-                process_image(src,image,function_name="darken",process_fn=brithen,save_as_jpep=True)
-                process_image(src,image,function_name="darken1",process_fn=brithen,save_as_jpep=True)
-                process_image(src,image,function_name="darken2",process_fn=brithen,save_as_jpep=True)
+        return
+
+
+    os.makedirs(CACHE, exist_ok=True)
+
+    for image in os.listdir(src):
+        # Filter out non-image files
+        if image.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif')):
+            try:
+                
+                # Apply multiple transformations
+                transformations = {
+                    "invert": invert_image,
+                    "original": convert_to_jpg,
+                    "darken": brighten_image,  
+                }
+
+                for function_name, process_fn in transformations.items():
+                    process_image(
+                        src, image, function_name=function_name, process_fn=process_fn, save_as_jpep=True
+                    )
                 
                 print(f"Processed: {image}")
-            else:
-                print(f"Skipped non-image file: {image}")
+            except Exception as e:
+                print(f"Error processing {image}: {e}")
+        else:
+            print(f"Skipped non-image file: {image}")
 
-if __name__=="__main__":
-    
-    process_folder(PATH)
-    process_results(CACHE,f"cache/")
+if __name__ == "__main__":
+    try:
+        # Process input folder
+        process_folder(PATH)
+
+        # Generate HTML results
+        process_results(CACHE, output_dir="cache", output_file="results.html")
+    except Exception as e:
+        print(f"An error occurred: {e}")

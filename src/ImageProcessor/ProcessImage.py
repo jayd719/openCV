@@ -1,7 +1,6 @@
 import cv2 as cv
 import os
-
-CACHE = "./cache/images/"
+from setup import CACHE
 
 def save_image_to_disk(folder_name: str, filename: str, image,convertToJPG=False) -> bool:
     try:

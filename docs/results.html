@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-blue-600 text-white sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="#overview" class="hover:text-blue-200">Overview</a></li>
+                <li><a href="#features" class="hover:text-blue-200">Features</a></li>
+                <li><a href="#functions" class="hover:text-blue-200">Functions</a></li>
+                <li><a href="#structure" class="hover:text-blue-200">Structure</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section id="hero" class="text-center bg-blue-600 text-white py-16 mb-12 rounded-lg">
+            <h1 class="text-4xl font-bold mb-4">Image Processing Toolkit</h1>
+            <p class="text-xl">A beginner-friendly toolkit for image processing with OpenCV</p>
+        </section>
+
+        <section id="overview" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Project Overview</h2>
+            <p class="mb-4">This project provides a beginner-friendly toolkit for image processing with OpenCV, designed to simplify the process of experimenting with image transformations. It abstracts away tedious tasks such as loading, saving, and correctly rendering images, allowing users to focus on creating and applying transformations. Processed results are displayed directly on a live webpage, enabling real-time visualization of changes without the need to switch between tools, folders, or interfaces.</p>
+        </section>
+
+        <section id="features" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Key Features</h2>
+            <ul class="space-y-4">
+                <li>
+                    <h3 class="text-xl font-semibold mb-2">Live Server Integration</h3>
+                    <p>Run the toolkit using a live server, where all changes are instantly reflected in the browser.</p>
+                </li>
+                <li>
+                    <h3 class="text-xl font-semibold mb-2">Real-Time Results</h3>
+                    <p>Create Python functions that take input images, apply transformations, and return the modified images. Changes are displayed dynamically without navigating between directories using a CLI or GUI file explorer.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="functions" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Functions</h2>
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-2">ImageProcessor</h3>
+                <p class="mb-4">The process_image function is the core utility for applying custom image processing functions to an input image. It simplifies the workflow by handling file management, processing, and optional output customization.</p>
+                <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code class="text-sm">from src.ImageProcessor.ProcessImage import process_image
+
+def process_image(file_path: str, file_name: str, function_name="random", process_fn=None, save_as_jpeg=False) -> bool:</code></pre>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>file_path (str):</strong> The directory path where the input image is located.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example: "./assets/input_images/".</li>
+                        </ul>
+                    </li>
+                    <li><strong>file_name (str):</strong> The name of the input image file (including the extension).
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example: "example.png"</li>
+                        </ul>
+                    </li>
+                    <li><strong>function_name (str):</strong> Name of the function, which specifies the folder where the output images will be saved. By default, the folder is named 'random'.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Default: "random"</li>
+                            <li>Example: "invert"</li>
+                        </ul>
+                    </li>
+                    <li><strong>process_fn (callable):</strong> A Python function that defines the image processing logic. The function should accept an input image and return the processed image.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example:
+                                <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto mt-2"><code class="text-sm">def invert_colors(image):
+    return cv2.bitwise_not(image)</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>save_as_jpeg (bool):</strong> Save output as JPG instead of origin format</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-2">ProcessResultsHTML</h3>
+                <p class="mb-4">The process_results function is a utility for consolidating processed images and displaying them in an organized HTML file. It takes the processed image files from a source directory, generates an HTML report, and saves the report to the specified output directory.</p>
+                <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code class="text-sm">from src.ProcessResultsHTML import process_results
+
+def process_results(src="src", output_dir="out", output_file="results.html"):</code></pre>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>src (str):</strong> The source directory where processed images are stored.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example: If your processed images are in ./cache/images/, set src="cache/images"</li>
+                        </ul>
+                    </li>
+                    <li><strong>output_dir (str):</strong> The directory where the resulting HTML file will be saved.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example: "./reports/"</li>
+                        </ul>
+                    </li>
+                    <li><strong>output_file (str):</strong> The name of the HTML file to generate.
+                        <ul class="list-disc pl-6 mt-2">
+                            <li>Example: "processed_images_report.html"</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="/placeholder.svg?height=300&width=600" alt="Results example" class="mt-4 border border-gray-300 rounded-lg max-w-full h-auto" />
+            </div>
+        </section>
+
+        <section id="structure" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Project Structure</h2>
+            <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code class="text-sm">PROJECT/
+│
+├── .devcontainer/           # DevContainer configuration for remote or containerized development
+├── .env                     # Environment variables for the project
+├── .github/                 # GitHub-specific workflows and configurations
+├── assets/                  # Input media files (images and videos)
+│   └── input_images/        # Add input images or videos here
+│
+├── cache/                   # Stores processed images (output files)
+│   └── images/              # Automatically generated processed images
+│
+├── ideas/                   # Placeholder for project-related ideas or future plans
+├── js/                      # JavaScript files (if applicable for the frontend)
+├── log/                     # Logs generated during runtime
+├── out/                     # Contains final output files (like reports or results)
+│   └── results.html         # Auto-generated HTML file showing processed results
+│
+├── plugins/                 # Plugins or helper assets (e.g., images, external scripts)
+│   └── results.png          # Example image used in the documentation
+│
+├── src/                     # Source code directory
+│   ├── ImageProcessor/      # Core image processing functionality
+│   │   ├── __init__.py      # Package initialization
+│   │   └── functions.py     # Main functions for processing images
+│   └── ProcessResultsHTML.py # Generates HTML reports for processed images
+│
+├── templates/               # HTML or Jinja templates (if applicable)
+├── testsuml/                # Testing utilities or scripts
+├── uml/                     # UML diagrams or architecture documentation
+│
+├── .editorconfig            # Editor configuration for consistent coding styles
+├── .gitignore               # Specifies files and directories ignored by Git
+├── .gitpod.Dockerfile       # Dockerfile for Gitpod development environment
+├── .gitpod.yml              # Gitpod configuration file
+├── .prettierrc              # Configuration for Prettier code formatting
+├── CONTRIBUTING.md          # Guidelines for contributing to the project
+├── LICENSE.txt              # License information
+├── main.py                  # Main entry point for the application
+├── README.md                # Project documentation
+├── requirements.txt         # Python dependencies
+├── SECURITY.md              # Security guidelines
+├── setup.py                 # Python package setup</code></pre>
+            <p class="mt-4">The structure includes directories for input files (assets/input_images/), processed outputs (cache/images/), and reports (out/results.html). Core logic resides in src/, featuring modules for image processing (ImageProcessor/functions.py) and HTML report generation (ProcessResultsHTML.py). Configurations like .editorconfig ensure consistent coding styles, while .gitpod.Dockerfile and .gitpod.yml enable streamlined containerized development. The project also includes detailed documentation (README.md, CONTRIBUTING.md) and excludes temporary files using .gitignore.</p>
+        </section>
+
+
+        <section id="structure" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <p class="mt-4">visualize results with original images for easy debugging</p>
+            <img src="https://github.com/jayd719/openCV/raw/develop/plugins/results.png" alt="">
+        </section>    
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-12">
+        <p>&copy; 2023 Image Processing Toolkit. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

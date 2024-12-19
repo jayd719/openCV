@@ -15,7 +15,7 @@ from src.ImageProcessors.ProcessImage import save_image_to_disk
 from src.ImageProcessors.functions import *
 from src.Uti.ProcessResultsHTML import process_results
 from setup import CACHE
-from src.Drawing.writeTextToImage import write_text
+from ImageProcessors.writeTextToImage import write_text
 from src.Uti.ProcessDir import process_directory
 
 transformations = {

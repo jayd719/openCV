@@ -1,6 +1,6 @@
 import cv2 as cv
-from functions import invert_image, brighten_image
-from ProcessResultsHTML import process_results
+from src.ImageProcessors.functions import invert_image, brighten_image
+from src.Uti.ProcessResultsHTML import process_results
 
 
 

@@ -43,7 +43,7 @@ def generate_page(content,content2, title="Results"):
         {content}
     </div>
     
-     <div id="videosection">
+    <div id="videosection">
         {content2}
     </div>
     

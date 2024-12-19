@@ -1,5 +1,5 @@
-from src.ProcessResultsHTML import process_results
-from src.VideoProcessor import process_video
+from src.Uti.ProcessResultsHTML import process_results
+from src.Uti.VideoProcessor import process_video
 
 if __name__ == "__main__":
     input_video_path = "./assets/videos/video1.mp4"  # Replace with your video file path

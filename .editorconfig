@@ -35,5 +35,8 @@
       "__updated__ = ${date}",
       "-------------------------------------------------------\n\"\"\"",
     ]
-  }
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.port": 5001
 }

@@ -10,10 +10,10 @@ __updated__ = Thu Dec 19 2024
 """
 
 import shutil
-from src.ImageProcessors.functions import *
+from src.ImageProcessors.functions import convert_to_jpg
 from src.Uti.ProcessResultsHTML import process_results
 from setup import CACHE
-from ImageProcessors.writeTextToImage import write_text
+from src.ImageProcessors.writeTextToImage import write_text
 from src.Uti.ProcessDir import process_directory
 
 transformations = {

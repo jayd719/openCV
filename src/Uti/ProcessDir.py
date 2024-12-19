@@ -3,8 +3,8 @@
 import os
 from src.Uti.ProcessResultsHTML import process_results
 from src.ImageProcessors.ProcessImage import process_image
-from ImageProcessors.writeTextToImage import write_text
-from src.ImageProcessors.functions import *
+from src.ImageProcessors.writeTextToImage import write_text
+from src.ImageProcessors.functions import invert_image, convert_to_jpg, brighten_image, preprocess
 from setup import PATH, CACHE
 
 # Apply multiple transformations

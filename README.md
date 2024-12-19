@@ -58,7 +58,7 @@ def process_results(src="src", output_dir="out", output_file="results.html"):
     - Example: "processed_images_report.html"
 
 
-<img src ="plugins/results.png" width="50%">
+<img src ="plugins/results2.png" width="50%">
 
 
 ## Project Structure

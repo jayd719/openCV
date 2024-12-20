@@ -39,9 +39,9 @@ def generate_page(content,content2, title="Results"):
 </head>
 <body>
     {time_stamp()}
-    <div id="resultssection">
+    <section id="resultssection">
         {content}
-    </div>
+    </section>
     
     <div id="videosection">
         {content2}
@@ -64,12 +64,12 @@ def process_results(src="src", output_dir="out", output_file="results.html"):
     result = ""
     video_results= ""
     try:
-        for section in os.listdir(src):
+        for section in sorted(os.listdir(src)):
             section_path = os.path.join(src, section)
             if not os.path.isdir(section_path):
                 continue
 
-            result += f"<div class='image-grid'><h3>{section}</h3><br>"
+            result += f"<div class='image-grid'><h2>{section}</h2><br>"
 
             for image in sorted(os.listdir(section_path)):
                 if os.path.splitext(image)[1].lower() in VALID_EXTENSIONS:

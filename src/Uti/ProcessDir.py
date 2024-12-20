@@ -1,20 +1,26 @@
 
 
 import os
+import cv2 as cv
 from src.Uti.ProcessResultsHTML import process_results
 from src.ImageProcessors.ProcessImage import process_image
 from src.ImageProcessors.writeTextToImage import write_text
 from src.ImageProcessors.functions import invert_image, convert_to_jpg, brighten_image, preprocess
+from src.ImageProcessors.thresholding import *
 from setup import PATH, CACHE
 
 # Apply multiple transformations
 transformations = {
     "invert": invert_image,
-    "original": convert_to_jpg,
+    "1original": convert_to_jpg,
     "Brighten 10": lambda img: brighten_image(img, 10),
     "Darken  100": lambda img: brighten_image(img, -100),
     "Marked": lambda img: write_text(img),
-    "Prep": lambda img: preprocess (img)
+    "Prep": lambda img: preprocess (img),
+    "THRESH_BINARY_INV": thresh_binary_inv,
+    "THRESH_TRUNC": thresh_trunc,
+    "THRESH_TOZERO": thresh_tozero,
+    "THRESH_TOZERO_INV": thresh_tozero_inv
 }
 
 
@@ -32,8 +38,12 @@ def process_directory(src="./assets/input_images/", transformations=transformati
         if image.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif')):
             try:
                 for function_name, process_fn in transformations.items():
+                    e1 = cv.getTickCount()
                     process_image(src, image, function_name=function_name, process_fn=process_fn, save_as_jpep=True)
-                
+                    e2 = cv.getTickCount()
+                    time = (e2-e1)/cv.getTickFrequency()
+                    print(f"Image:[{image}] Process In: [{time:.4f}]")
+                    
                 print(f"Processed: {image}")
             except Exception as e:
                 print(f"Error processing {image}: {e}")

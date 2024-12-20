@@ -20,7 +20,7 @@ from src.ImageProcessors.thresholding import *
 from src.ImageProcessors.this import ImageOI
 
 transformations = {
-    "original": convert_to_jpg,
+    "1ORIGINAL": convert_to_jpg,
     # "Marked": lambda img: write_text(img),
     # "Gaussian":lambda img:apply_guassian_blur(img,5,3)
     "THRESH_BINARY_INV": thresh_binary_inv,
@@ -31,17 +31,6 @@ transformations = {
 
 if __name__ == "__main__":
     shutil.rmtree(CACHE)
-    # process_directory(transformations=transformations)
-    objects = []
-    for objectImage in os.listdir("./assets/Objects/"):
-        img = ImageOI(objectImage,os.path.join("./assets/Objects/",objectImage))
-        objects.append(img)
-    for image in os.listdir(PATH):
-        img = ImageOI(image,os.path.join(PATH,image))
-        img.match_with_object(objects[1])
-        
-        img.save_all_()
-        print(image)
-    
+    process_directory()    
     process_results(CACHE, "cache/")
     

@@ -10,10 +10,9 @@ function createDynamicStyles() {
     grid-template-columns: repeat(2, 1fr);
     }
     h2 {
-        font-size: 24px;
+        font-size: 20px;
         margin-bottom: 20px;
         text-transform: capitalize;
-
     }
     .image-grid {
         display: grid;
@@ -63,13 +62,13 @@ function applyStyles() {
   const resultsSection = document.getElementById("resultssection");
 
   if (!resultsSection) return;
-  resultsSection.style.display="flex"
+  resultsSection.style.display = "flex"
   // Apply grid layout to the results section
-  resultsSection.classList.add("image-grid");
+
 
   // Update div elements to have the "image-item" class
   resultsSection.querySelectorAll("div").forEach((div) => {
-    div.classList.add("image-item");
+    div.classList.add("image-grid");
 
     // Update figcaption inside div
     div.querySelectorAll("figcaption").forEach((figcaption) => {
@@ -137,7 +136,7 @@ initialize();
 // Update and display the time elapsed since a given start time
 function updateTime(startTime) {
   const timeElement = document.getElementById("creation-time");
-  
+
   if (!timeElement) return;
 
   // Get the current time

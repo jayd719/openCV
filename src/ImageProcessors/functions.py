@@ -28,3 +28,8 @@ def brighten_image(img, value):
 def preprocess(img, h=512):
     cv.resize(img, (h, h), interpolation=cv.INTER_CUBIC)
     return img
+
+
+def apply_guassian_blur(img,kernelSize=3, sigma=1):
+    img = cv.GaussianBlur(img,(kernelSize,kernelSize),sigma)
+    return img

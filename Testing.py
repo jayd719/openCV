@@ -36,13 +36,13 @@ if __name__ == "__main__":
     shutil.rmtree(CACHE)
 
     for image in os.listdir(PATH):
-        img = ImageOI(image,os.path.join(PATH,image))
-        img.resize()
+        source_image = ImageOI(image,os.path.join(PATH,image))
+        source_image.resize()
 
-        process_image_func(img,"INVERT",invert_image,True)
-        process_image_func(img,"BRIGHTN",lambda img: brighten_image(img, 10),True)
-        process_image_func(imageObject=img,function_name="HTRE",process_fn=thresh_tozero_inv,save_as_jpep=True)
-        img.save()
+        process_image_func(source_image,"INVERT",invert_image,True)
+        process_image_func(source_image,"BRIGHTN",lambda img: brighten_image(img, 10),True)
+        process_image_func(imageObject=source_image,function_name="HTRE",process_fn=thresh_tozero_inv,save_as_jpep=True)
+        source_image.save()
         print(image)
     
     process_results(CACHE, "cache/")

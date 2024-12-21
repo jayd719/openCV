@@ -9,20 +9,23 @@ __updated__ = Thu Dec 19 2024
 -------------------------------------------------------
 """
 
-import shutil
-import cv2 as cv
+
 from src.ImageProcessors.functions import *
 from src.Uti.ProcessResultsHTML import process_results
-from setup import CACHE,PATH
 from src.ImageProcessors.writeTextToImage import write_text
 from src.Uti.ProcessDir import process_directory
+from src.ImageProcessors.ProcessImage import process_image_func
 from src.ImageProcessors.thresholding import *
-from src.ImageProcessors.this import ImageOI
+from src.ImageProcessors.ImageIO import ImageOI
+from src.Uti.app import app
+from setup import CACHE,PATH
+import shutil
+import cv2 as cv
 
 transformations = {
     "original": convert_to_jpg,
-    # "Marked": lambda img: write_text(img),
-    # "Gaussian":lambda img:apply_guassian_blur(img,5,3)
+    "Marked": lambda img: write_text(img),
+    "Gaussian":lambda img:apply_guassian_blur(img,5,3),
     "THRESH_BINARY_INV": thresh_binary_inv,
     "THRESH_TRUNC": thresh_trunc,
     "THRESH_TOZERO": thresh_tozero,
@@ -31,17 +34,17 @@ transformations = {
 
 if __name__ == "__main__":
     shutil.rmtree(CACHE)
-    # process_directory(transformations=transformations)
-    objects = []
-    for objectImage in os.listdir("./assets/Objects/"):
-        img = ImageOI(objectImage,os.path.join("./assets/Objects/",objectImage))
-        objects.append(img)
+
     for image in os.listdir(PATH):
         img = ImageOI(image,os.path.join(PATH,image))
-        img.match_with_object(objects[1])
-        
-        img.save_all_()
+        img.resize()
+
+        process_image_func(img,"INVERT",invert_image,True)
+        process_image_func(img,"BRIGHTN",lambda img: brighten_image(img, 10),True)
+        process_image_func(imageObject=img,function_name="HTRE",process_fn=thresh_tozero_inv,save_as_jpep=True)
+        img.save()
         print(image)
     
     process_results(CACHE, "cache/")
+    # app.run(debug=True)
     
